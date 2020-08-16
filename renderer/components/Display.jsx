@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Styled = styled.div`
+const BPM = styled.div`
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -24,10 +24,10 @@ const Styled = styled.div`
 `
 
 export const Display = ({bpm}) => (
-  <Styled>
+    <BPM>
       <span className="bpm-span">
         <h1 id="bpm" className="bpm">{bpm}</h1>
         <p className="bpm-tag">BPM</p>
       </span>
-    </Styled>
+    </BPM>
 )
