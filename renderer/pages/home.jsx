@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
-import { Global,Display, Range, Container, Button } from '../components';
-import { Count } from '../components/Count';
+import { Global,Display, Range, Container, Button, Circle } from '../components';
 
 // TODOS
 // ADD THE ABILITY TO INCREASE THE BPM WITH ARROW KEYS
@@ -46,13 +45,20 @@ const Home = () => {
 
   const rangeHandler = (e) => {
     const {value} = e.target
-    
-    setBPM(Number(value))
+    if(bpm > 20 && bpm < 220){
+      setBPM(Number(value))
+    }
   }
 
   const modifier = {
-    increase: () => setBPM(bpm + changeBy),
-    decrease: () => setBPM(bpm - changeBy)
+    increase: () => {
+      const newBPM = Number(bpm) + Number(changeBy)
+      setBPM(newBPM)
+    },
+    decrease: () => {
+      const newBPM = Number(bpm) - Number(changeBy)
+      setBPM(newBPM)
+    }
   }
 
   const playHandler = (e) => {
@@ -71,25 +77,36 @@ const Home = () => {
     }
   }
 
+  const changeByHandler = (e) => {
+    const {value} = e.target
+    if(value > 12){
+      return
+    }
+    setChangeBy(value)
+  }
+
   return (
-    <React.Fragment>
-      <Head>
+    
+      <React.Fragment>
+        <Head>
         <title>Metronome App</title>
       </Head>
       <Global/>
-      <Count beatsPerMeasure={4}/>
-      <Display bpm={bpm}/>
+      <Circle>
+        <Display bpm={bpm}/>
     <Container>
       <Decrement onClick={modifier.decrease}/>
-      <Range min={20} max={220} value={bpm} onChange={rangeHandler}/>
+      {/* <Range min={20} max={220} value={bpm} onChange={rangeHandler}/> */}
       <Increment onClick={modifier.increase}/>
     </Container>
     <Container>
       <Button onClick={playHandler}>PLAY</Button>
       <Button onClick={stopHandler}>STOP</Button>
-      <input type='number' value={changeBy.toString()} onChange={(e)=>setChangeBy(e.target.value)}/>
+      <input type='number' value={changeBy} onChange={changeByHandler}/>
     </Container>
-    </React.Fragment>
+      </Circle>
+      </React.Fragment>
+    
   );
 };
 
