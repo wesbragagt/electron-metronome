@@ -1,9 +1,9 @@
 {
   "private": true,
   "name": "electron-metronome",
-  "description": "My application description",
+  "description": "My electron metronome app",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Weslley Braga <wesbragagt@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
