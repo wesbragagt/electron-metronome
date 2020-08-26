@@ -43,11 +43,9 @@ const Home = () => {
     setIntervalMS(newMS)
   }, [bpm, setIntervalMS, isPlaying])
 
-  const rangeHandler = (e) => {
+  const bpmHandler = (e) => {
     const {value} = e.target
-    if(bpm > 20 && bpm < 220){
-      setBPM(Number(value))
-    }
+    setBPM(value)
   }
 
   const modifier = {
@@ -79,9 +77,6 @@ const Home = () => {
 
   const changeByHandler = (e) => {
     const {value} = e.target
-    if(value > 12){
-      return
-    }
     setChangeBy(value)
   }
 
@@ -93,7 +88,7 @@ const Home = () => {
       </Head>
       <Global/>
       <Circle>
-        <Display bpm={bpm}/>
+        <Display bpm={bpm} onChange={bpmHandler} changeByValue={changeBy} changeByHandler={changeByHandler}/>
     <Container>
       <Decrement onClick={modifier.decrease}/>
       {/* <Range min={20} max={220} value={bpm} onChange={rangeHandler}/> */}
@@ -102,7 +97,6 @@ const Home = () => {
     <Container>
       <Button onClick={playHandler}>PLAY</Button>
       <Button onClick={stopHandler}>STOP</Button>
-      <input type='number' value={changeBy} onChange={changeByHandler}/>
     </Container>
       </Circle>
       </React.Fragment>

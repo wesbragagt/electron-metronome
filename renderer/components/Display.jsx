@@ -1,33 +1,71 @@
 import styled from 'styled-components'
-
-const BPM = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
+const Styled = styled.div`
+  margin: 32px auto;
   padding: 2em;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  .bpm {
-  font-size: 1.5em;
-  font-weight: inherit;
-}
-
-.bpm-span {
-  padding: 1em;
-  text-align: center;
+  width: 30%;
   border: 2px solid white;
   border-radius: 50px;
-}
+  box-sizing: border-box;
+  overflow: hidden;
+  .bpm{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  input[type="text"]{
+    background-color: transparent;
+    color: #fff;
+    padding: 0px;
+    border: initial;
+    font: inherit;
+    margin: 0px;
+    text-align: center;
+    width: 34px;
+  }
+
+  input[type="text"]:focus{
+    outline: none;
+  }
+  }
+  .change{
+    font-family: inherit;
+    font-weight: 500;
+    background: none;
+    box-sizing: border-box;
+    color: inherit;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+
+    label{
+      font-size: .8rem;
+    }
+
+    input[type="number"]{
+    background-color: transparent;
+    color: #fff;
+    padding: 0px;
+    border: initial;
+    font: inherit;
+    margin: 0px;
+    text-align: center;
+    width: 34px;
+  }
+  input[type="number"]:focus{
+    outline: none;
+  }
+  }
 `
 
-export const Display = ({bpm}) => (
-    <BPM>
-      <span className="bpm-span">
-        <h1 id="bpm" className="bpm">{bpm}</h1>
-        <p className="bpm-tag">BPM</p>
-      </span>
-    </BPM>
+export const Display = ({bpm, onChange, changeByValue, changeByHandler}) => (
+    <Styled>
+      <div className='bpm'>
+        <input type='text' id="bpm" className="bpm" value={bpm} onChange={onChange}/>
+        <p>BPM</p>
+      </div>
+      <div className='change'>
+        <label htmlFor="">change by:</label>
+        <input min='1' max='12' type='number' value={changeByValue} onChange={changeByHandler}/>
+      </div>
+    </Styled>
 )
