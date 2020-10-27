@@ -29,9 +29,20 @@ const Home = () => {
   }
   
   useEffect(()=>{
+    const checkArrowKeys = (e)=>{
+      if(e.keyCode == 39){
+        console.log('here')
+        setBPM(bpm + changeBy)
+      }
+      if(e.keyCode == 37){
+        setBPM(bpm - changeBy)
+      }
+    }
     if(window){
       beep.current = new window.Audio(audio)
+      document.addEventListener('keypress', checkArrowKeys)
     }
+
   }, [])
 
   useEffect(()=>{
